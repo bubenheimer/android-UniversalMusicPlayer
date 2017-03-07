@@ -16,46 +16,46 @@
 
 package com.example.android.uamp;
 
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.RemoteException;
-import android.support.annotation.NonNull;
-import android.support.v4.media.MediaBrowserCompat.MediaItem;
-import android.support.v4.media.MediaBrowserServiceCompat;
-import android.support.v4.media.MediaMetadataCompat;
-import android.support.v4.media.session.MediaButtonReceiver;
-import android.support.v4.media.session.MediaSessionCompat;
-import android.support.v4.media.session.PlaybackStateCompat;
-import android.support.v7.media.MediaRouter;
+ import android.app.PendingIntent;
+ import android.content.BroadcastReceiver;
+ import android.content.Context;
+ import android.content.Intent;
+ import android.content.IntentFilter;
+ import android.os.Bundle;
+ import android.os.Handler;
+ import android.os.Message;
+ import android.os.RemoteException;
+ import android.support.annotation.NonNull;
+ import android.support.v4.media.MediaBrowserCompat.MediaItem;
+ import android.support.v4.media.MediaBrowserServiceCompat;
+ import android.support.v4.media.MediaMetadataCompat;
+ import android.support.v4.media.session.MediaButtonReceiver;
+ import android.support.v4.media.session.MediaSessionCompat;
+ import android.support.v4.media.session.PlaybackStateCompat;
+ import android.support.v7.media.MediaRouter;
 
-import com.example.android.uamp.model.MusicProvider;
-import com.example.android.uamp.playback.CastPlayback;
-import com.example.android.uamp.playback.LocalPlayback;
-import com.example.android.uamp.playback.Playback;
-import com.example.android.uamp.playback.PlaybackManager;
-import com.example.android.uamp.playback.QueueManager;
-import com.example.android.uamp.ui.NowPlayingActivity;
-import com.example.android.uamp.utils.CarHelper;
-import com.example.android.uamp.utils.LogHelper;
-import com.example.android.uamp.utils.TvHelper;
-import com.example.android.uamp.utils.WearHelper;
-import com.google.android.gms.cast.framework.CastContext;
-import com.google.android.gms.cast.framework.CastSession;
-import com.google.android.gms.cast.framework.SessionManager;
-import com.google.android.gms.cast.framework.SessionManagerListener;
+ import com.example.android.uamp.model.MusicProvider;
+ import com.example.android.uamp.playback.CastPlayback;
+ import com.example.android.uamp.playback.LocalPlayback;
+ import com.example.android.uamp.playback.Playback;
+ import com.example.android.uamp.playback.PlaybackManager;
+ import com.example.android.uamp.playback.QueueManager;
+ import com.example.android.uamp.ui.NowPlayingActivity;
+ import com.example.android.uamp.utils.CarHelper;
+ import com.example.android.uamp.utils.LogHelper;
+ import com.example.android.uamp.utils.TvHelper;
+ import com.example.android.uamp.utils.WearHelper;
+ import com.google.android.gms.cast.framework.CastContext;
+ import com.google.android.gms.cast.framework.CastSession;
+ import com.google.android.gms.cast.framework.SessionManager;
+ import com.google.android.gms.cast.framework.SessionManagerListener;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
+ import java.lang.ref.WeakReference;
+ import java.util.ArrayList;
+ import java.util.List;
 
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_EMPTY_ROOT;
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
+ import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_EMPTY_ROOT;
+ import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
 
 /**
  * This class provides a MediaBrowser through a service. It exposes the media library to a browsing
@@ -283,6 +283,8 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
         mDelayedStopHandler.removeCallbacksAndMessages(null);
         mSession.release();
+
+        ((App) getApplication()).getRefWatcher().watch(this);
     }
 
     @Override
